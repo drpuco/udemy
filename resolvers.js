@@ -1,8 +1,14 @@
-const User = require("./models/User");
-
 module.exports = {
   Query: {
-    getUser: {}
+    getPosts: async (_, args, { Post }) => {
+      const posts = await Post.find({})
+        .sort({ createdDate: 'desc' })
+        .populate({
+          path: 'createdBy',
+          model: 'User'
+        })
+      return posts
+    }
   },
   Mutation: {
     addPost: async (
@@ -16,22 +22,22 @@ module.exports = {
         categories,
         description,
         createdBy: creatorId
-      }).save();
-      return newPost;
+      }).save()
+      return newPost
     },
 
     signupUser: async (_, { username, email, password }) => {
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ username })
       if (user) {
-        throw new Error("User already exists");
+        throw new Error('User already exists')
       }
 
       const newUser = await new User({
         username,
         email,
         password
-      }).save();
-      return newUser;
+      }).save()
+      return newUser
     }
   }
-};
+}
