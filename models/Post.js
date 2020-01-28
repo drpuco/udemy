@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -28,11 +28,11 @@ const PostSchema = new mongoose.Schema({
     default: 0
   },
   //property ('createdBy') === path
-  // ref ('User)
+  // ref ('User) === model
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'User'
+    ref: "User"
   },
   messages: [
     {
@@ -47,10 +47,10 @@ const PostSchema = new mongoose.Schema({
       messageUser: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
+        ref: "User"
       }
     }
   ]
-})
+});
 
-module.exports = mongoose.model('Post', PostSchema)
+module.exports = mongoose.model("Post", PostSchema);
