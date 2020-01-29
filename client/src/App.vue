@@ -48,7 +48,7 @@
       </v-toolbar-items>
     </v-app-bar>
 
-    <!--   Mussnochweg -->
+    <!--   Hier sitzt der Vcontainer -->
     <main>
       <v-container class="mt-4">
         <transition name="fade">
